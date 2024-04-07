@@ -1,7 +1,16 @@
 name: My First Github Action
 on: [push]
 jobs:
-  print-hello-world:
+  build-app:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello world!!"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+         node-version: '14.7.0'
+      - name: Install node_modules
+        run: npm i
+      - name: Build the project
+        run: npm build
+      - name: Setup Finish
+        run: echo "hurray!"
